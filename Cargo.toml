@@ -1,0 +1,12 @@
+[package]
+name = "europa_net"
+version = "0.1.1"
+authors = ["Dark Boi <66882633+darkdarcool@users.noreply.github.com>"]
+edition = "2018"
+include = ["src/", "LICENSE-*", "README.md", "CHANGELOG.md", "COPYRIGHT"]
+description = """
+Europa net API
+"""
+license = "MIT OR Apache-2.0"
+
+[dependencies]
