@@ -9,8 +9,8 @@ mod handle {
     let mut buf = [0u8 ;4096];
     match stream.read(&mut buf) {
         Ok(_) => {
-            let req_str = String::from_utf8_lossy(&buf);
-            println!("{}", req_str);
+            let _req_str = String::from_utf8_lossy(&buf);
+            // println!("{}", req_str);
             },
         Err(e) => println!("Unable to read stream: {}", e),
     }
@@ -18,7 +18,7 @@ mod handle {
   
   pub fn handle_write(mut stream: TcpStream, response: String) {
     match stream.write(response.as_bytes()) {
-        Ok(_) => println!("Response sent"),
+        Ok(_) => print!(""), //println!("Response sent"),
         Err(e) => println!("Failed sending response: {}", e),
     }
   }
@@ -29,9 +29,9 @@ mod handle {
   }
 }
 
-pub fn start_server(port: &str, response: String) {
+pub fn createSocket(port: &str, response: String) {
   let listener = TcpListener::bind(port).unwrap();
-    println!("Listening for connections on port {}", 8080);
+    println!("Listening for connections on port {}", port.replace("localhost:", ""));
     let ok: String = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n".to_string();
     let to_give = format!("{}{}\n",ok, response);
     for stream in listener.incoming() {
@@ -42,7 +42,7 @@ pub fn start_server(port: &str, response: String) {
                 //});
             }
             Err(e) => {
-                println!("Unable to connect: {}", e);
+                panic!("Unable to connect: {}", e);
             }
         }
     }

@@ -1,5 +1,5 @@
 pub mod client;
-use client::server::start_server;
+use client::server::{createSocket};
 fn main() {
-  start_server("localhost:8000", String::from("<h1> Hello, world! </h1>"));
+  createSocket("localhost:8000", String::from("<h1> Hello, world! </h1>"));
 }
